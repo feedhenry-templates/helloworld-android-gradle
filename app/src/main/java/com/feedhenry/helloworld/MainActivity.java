@@ -18,13 +18,20 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	private boolean initialised = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FH.init(this, new FHActCallback() {
 
+        // Initialize button
+        Button cloudButton = (Button) findViewById(R.id.button);
+        cloudButton.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FH.init(this, new FHActCallback() {
             @Override
             public void success(FHResponse resp) {
 
@@ -34,28 +41,25 @@ public class MainActivity extends Activity implements OnClickListener{
 
             @Override
             public void fail(FHResponse response) {
-
                 Log.i("fh", "Init failed with FH Cloud" + response.getRawResponse());
-
             }
         });
-
-        // Initialize button
-        Button cloudButton = (Button) findViewById(R.id.button);
-        cloudButton.setOnClickListener(this);
     }
-    
-    
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FH.stop();
+    }
+
     @Override
     public void onClick(View v) {
-
         if (initialised) {
             callCloud();
         } else {
             Toast.makeText(getApplicationContext(), "App not Initialized", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     private void callCloud() {
         // Use FH Agent to call the FH Cloud
@@ -74,12 +78,4 @@ public class MainActivity extends Activity implements OnClickListener{
         });
     }
 
-
-    @Override
-    protected void onStop() {
-      FH.stop();
-      super.onStop();
-    }
-    
-    
 }
