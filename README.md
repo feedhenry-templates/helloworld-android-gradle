@@ -1,0 +1,1 @@
+This is a helloworld android template app using Gradle.
