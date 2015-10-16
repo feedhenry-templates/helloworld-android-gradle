@@ -1,49 +1,33 @@
 package com.feedhenry.helloworld;
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.feedhenry.helloworld_android.R;
 import com.feedhenry.sdk.FH;
 import com.feedhenry.sdk.FHActCallback;
 import com.feedhenry.sdk.FHResponse;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-public class MainActivity extends Activity implements OnClickListener{
-
-	private boolean initialised = false;
+public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
-        // Initialize button
-        Button cloudButton = (Button) findViewById(R.id.button);
-        cloudButton.setOnClickListener(this);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        FH.init(this, new FHActCallback() {
-            @Override
-            public void success(FHResponse resp) {
-
-                initialised = true;
-
-            }
-
-            @Override
-            public void fail(FHResponse response) {
-                Log.i("fh", "Init failed with FH Cloud" + response.getRawResponse());
-            }
-        });
+        showInitFragment();
     }
 
     @Override
@@ -52,30 +36,19 @@ public class MainActivity extends Activity implements OnClickListener{
         FH.stop();
     }
 
-    @Override
-    public void onClick(View v) {
-        if (initialised) {
-            callCloud();
-        } else {
-            Toast.makeText(getApplicationContext(), "App not Initialized", Toast.LENGTH_SHORT).show();
-        }
+    private void showFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, fragment)
+                .commit();
     }
 
-    private void callCloud() {
-        // Use FH Agent to call the FH Cloud
-        FHAgent fhAgent = new FHAgent();
-        fhAgent.cloudCall(new FHActCallback() {
-            @Override
-            public void success(FHResponse fhResponse) {
-                TextView tv = (TextView) findViewById(R.id.cloud_response);
-                tv.setText(fhResponse.getJson().getString("msg"));
-            }
+    private void showInitFragment() {
+        showFragment(new InitFragment());
+    }
 
-            @Override
-            public void fail(FHResponse fhResponse) {
-                Toast.makeText(getApplicationContext(), "Cloud Call failed", Toast.LENGTH_SHORT).show();
-            }
-        });
+    public void showHelloScreen() {
+        showFragment(new HelloFragment());
     }
 
 }
