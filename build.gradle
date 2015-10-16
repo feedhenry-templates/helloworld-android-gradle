@@ -15,5 +15,6 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven { url "https://github.com/feedhenry/fh-android-sdk-repository/raw/master/releases" }
     }
 }
