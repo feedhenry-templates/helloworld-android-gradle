@@ -10,14 +10,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.feedhenry.helloworld_android.R;
 import com.feedhenry.sdk.FH;
-import com.feedhenry.sdk.FHActCallback;
-import com.feedhenry.sdk.FHResponse;
 
 public class MainActivity extends ActionBarActivity {
 
