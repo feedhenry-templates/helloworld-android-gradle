@@ -24,7 +24,7 @@ public class InitFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.init_fragment, null);
+        View view = View.inflate(container.getContext(), R.layout.init_fragment, null);
 
         FH.init(getActivity(), new FHActCallback() {
             @Override
