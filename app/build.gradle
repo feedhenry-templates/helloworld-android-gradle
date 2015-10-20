@@ -1,3 +1,7 @@
+plugins {
+    id "com.github.hierynomus.license" version "0.12.0"
+}
+
 apply plugin: 'com.android.application'
 
 android {
@@ -6,11 +10,17 @@ android {
 
     defaultConfig {
         applicationId "com.feedhenry.helloworld"
-        minSdkVersion 9
+        minSdkVersion 7
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
+
+    lintOptions {
+        abortOnError true
+        disable 'OldTargetApi', 'GradleDependency'
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -19,7 +29,12 @@ android {
     }
 }
 
+license {
+    header rootProject.file('misc/HEADER')
+    strictCheck true
+}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.feedhenry:fh-android-sdk:2.5.0'
 }

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 
     Copyright (c) 2015 FeedHenry Ltd, All Rights Reserved.
@@ -7,9 +8,9 @@
 
 -->
 <resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 
-    <string name="app_name">Hello World - FeedHenry</string>
-    <string name="hello_world">Click on the button below to say hello via the cloud</string>
-    <string name="hello_button">Say Hello</string>
-
+    <color name="background">#fafafa</color>
 </resources>
