@@ -36,5 +36,5 @@ license {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile 'com.feedhenry:fh-android-sdk:2.4.0'
+    compile 'com.feedhenry:fh-android-sdk:2.5.0'
 }
