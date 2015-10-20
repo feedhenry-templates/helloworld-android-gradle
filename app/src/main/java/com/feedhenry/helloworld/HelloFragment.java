@@ -29,7 +29,7 @@ public class HelloFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = View.inflate(container.getContext(), R.layout.hello_fragment, null);
+        final View view = View.inflate(getActivity(), R.layout.hello_fragment, null);
         final TextView responseTextView = (TextView) view.findViewById(R.id.cloud_response);
 
         Button button = (Button) view.findViewById(R.id.button);
