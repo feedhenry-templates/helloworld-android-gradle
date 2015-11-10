@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.feedhenry.helloworld"
-        minSdkVersion 7
+        minSdkVersion 8
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -37,4 +37,8 @@ license {
 dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.feedhenry:fh-android-sdk:2.5.0'
+
+    androidTestCompile 'com.android.support.test:runner:0.3'
+    androidTestCompile 'com.android.support.test:rules:0.3'
+    androidTestCompile 'org.hamcrest:hamcrest-library:1.1'
 }
