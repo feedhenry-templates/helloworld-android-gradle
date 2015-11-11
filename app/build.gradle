@@ -14,18 +14,13 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId "com.feedhenry.helloworld.test"
     }
 
     lintOptions {
         abortOnError true
         disable 'OldTargetApi', 'GradleDependency'
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
     }
 }
 
@@ -37,8 +32,7 @@ license {
 dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.feedhenry:fh-android-sdk:2.5.0'
-
     androidTestCompile 'com.android.support.test:runner:0.3'
     androidTestCompile 'com.android.support.test:rules:0.3'
-    androidTestCompile 'org.hamcrest:hamcrest-library:1.1'
+    androidTestCompile 'com.squareup.okhttp:mockwebserver:2.4.0'
 }
