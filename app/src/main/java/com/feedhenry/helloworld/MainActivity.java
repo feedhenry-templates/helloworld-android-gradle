@@ -26,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         showInitFragment();
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         FH.stop();
     }
