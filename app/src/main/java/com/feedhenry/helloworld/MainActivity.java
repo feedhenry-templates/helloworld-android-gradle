@@ -8,13 +8,13 @@ package com.feedhenry.helloworld;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.feedhenry.helloworld_android.R;
 import com.feedhenry.sdk.FH;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +26,13 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         showInitFragment();
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         FH.stop();
     }

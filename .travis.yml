@@ -1,0 +1,27 @@
+#Copyright (c) 2015 FeedHenry Ltd, All Rights Reserved.
+#
+#Please refer to your contract with FeedHenry for the software license agreement.
+#If you do not have a contract, you do not have a license to use this software.
+#
+language: android
+jdk:
+  - oraclejdk8
+
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-22.0.1
+
+  
+    - android-22
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - extra-android-support
+    - sys-img-armeabi-v7a-android-16
+before_script:
+  - echo no | android create avd --force -n test -t android-16 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
