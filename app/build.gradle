@@ -14,13 +14,23 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.feedhenry.helloworld.test.JUnitJacocoTestRunner"
         testApplicationId "com.feedhenry.helloworld.test"
+    }
+
+    buildTypes {
+        debug{
+            testCoverageEnabled = true
+        }
     }
 
     lintOptions {
         abortOnError true
         disable 'OldTargetApi', 'GradleDependency'
+    }
+
+    jacoco {
+        version = '0.7.5.201505241946'
     }
 }
 
