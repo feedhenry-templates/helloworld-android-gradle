@@ -14,7 +14,7 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "com.feedhenry.helloworld.test.JUnitJacocoTestRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         testApplicationId "com.feedhenry.helloworld.test"
     }
 
@@ -39,9 +39,15 @@ license {
     strictCheck true
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'com.android.support:support-annotations:23.0.1'
+    }
+}
+
 dependencies {
-    androidTestCompile 'com.android.support.test:runner:0.3'
-    androidTestCompile 'com.android.support.test:rules:0.3'
+    androidTestCompile 'com.android.support.test:runner:0.4'
+    androidTestCompile 'com.android.support.test:rules:0.4'
     androidTestCompile 'com.squareup.okhttp:mockwebserver:2.4.0'
 
     compile 'com.feedhenry:fh-android-sdk:2.5.0'
