@@ -76,7 +76,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity> {
 
         Fragment f;
         while (!((f = main.getSupportFragmentManager().findFragmentById(R.id.content)) instanceof HelloFragment)) {
-            assertTrue("Timeout after 5 seconds", System.currentTimeMillis() - startTime < 5000);
+            assertTrue("Timeout after 10 seconds", System.currentTimeMillis() - startTime < 10000);
         }
 
         Assert.assertEquals(HelloFragment.class, f.getClass());

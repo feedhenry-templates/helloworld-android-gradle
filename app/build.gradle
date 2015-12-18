@@ -5,13 +5,13 @@ plugins {
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.feedhenry.helloworld"
-        minSdkVersion 8
-        targetSdkVersion 22
+        minSdkVersion 10
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -25,8 +25,7 @@ android {
     }
 
     lintOptions {
-        abortOnError true
-        disable 'OldTargetApi', 'GradleDependency'
+        abortOnError false
     }
 
     jacoco {
@@ -41,7 +40,7 @@ license {
 
 configurations.all {
     resolutionStrategy {
-        force 'com.android.support:support-annotations:23.0.1'
+        force 'com.android.support:support-annotations:23.1.1'
     }
 }
 
@@ -50,7 +49,6 @@ dependencies {
     androidTestCompile 'com.android.support.test:rules:0.4'
     androidTestCompile 'com.squareup.okhttp:mockwebserver:2.4.0'
 
-    compile 'com.feedhenry:fh-android-sdk:2.5.0'
-    compile 'com.android.support:appcompat-v7:22.2.0'
-
+    compile 'com.feedhenry:fh-android-sdk:3.0.0'
+    compile 'com.android.support:appcompat-v7:23.1.1'
 }
