@@ -1,34 +1,15 @@
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-lib-cov
-lcov.info
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
+# Build system files and directories
+.gradle/
+build/
 
-pids
-logs
-results
-build
-.grunt
-
-node_modules
-.classpath
-.project
-bin/*
-
-build/*
-local.properties
+# IDE Files
 *.iml
-**/*.iml
-.gradle/*
-.idea/*
+.idea
+
+# RHMAP Files
+
+# Local Configuration Files
+local.properties
+
+# Operating System Files
+.DS_Store
