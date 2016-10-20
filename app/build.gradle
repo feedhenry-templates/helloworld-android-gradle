@@ -3,6 +3,7 @@ plugins {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 24
@@ -42,9 +43,6 @@ android {
         abortOnError false
     }
 
-    jacoco {
-        version = '0.7.5.201505241946'
-    }
 }
 
 license {
