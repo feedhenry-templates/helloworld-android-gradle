@@ -18,7 +18,9 @@
 <resources>
 
     <string name="app_name">Hello World - FeedHenry</string>
-    <string name="hello_world">Click on the button below to say hello via the cloud</string>
-    <string name="hello_button">Say Hello</string>
+    <string name="screen_title">Say Hello to the cloud!</string>
+    <string name="name">Name</string>
+    <string name="button_text">Call cloud</string>
+    <string name="response">Response:</string>
 
 </resources>
