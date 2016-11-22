@@ -57,7 +57,7 @@ configurations.all {
 }
 
 dependencies {
-    compile 'com.feedhenry:fh-android-sdk:3.1.0'
+    compile 'com.feedhenry:fh-android-sdk:3.3.0'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
 
