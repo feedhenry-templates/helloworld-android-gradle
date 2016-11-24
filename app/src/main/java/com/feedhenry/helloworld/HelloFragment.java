@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.feedhenry.helloworld_android.R;
@@ -39,40 +40,42 @@ public class HelloFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = View.inflate(getActivity(), R.layout.hello_fragment, null);
-        final TextView responseTextView = (TextView) view.findViewById(R.id.cloud_response);
 
-        Button button = (Button) view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        final TextView mResponse = (TextView) view.findViewById(R.id.cloud_response);
+        final EditText mName = (EditText) view.findViewById(R.id.name);
+        Button mCloudButton = (Button) view.findViewById(R.id.button);
+        mCloudButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                responseTextView.setText("");
-                v.setEnabled(false);
-                cloudCall(v, responseTextView);
+                mResponse.setText("");
+                mCloudButton.setEnabled(false);
+                cloudCall(v, mName.getText().toString(), mResponse);
+                mName.setText("");
             }
         });
 
         return view;
     }
 
-    private void cloudCall(final View v, final TextView responseTextView) {
+    private void cloudCall(final View button, final String name, final TextView response) {
         try {
-            JSONObject params = new JSONObject("{hello: 'world'}");
+            JSONObject params = new JSONObject("{hello: '" + name + "'}");
 
             FHCloudRequest request = FH.buildCloudRequest("hello", "POST", null, params);
             request.executeAsync(new FHActCallback() {
                 @Override
                 public void success(FHResponse fhResponse) {
                     Log.d(TAG, "cloudCall - success");
-                    v.setEnabled(true);
-                    responseTextView.setText(fhResponse.getJson().getString("msg"));
+                    button.setEnabled(true);
+                    response.setText(fhResponse.getJson().getString("msg"));
                 }
 
                 @Override
                 public void fail(FHResponse fhResponse) {
                     Log.d(TAG, "cloudCall - fail");
                     Log.e(TAG, fhResponse.getErrorMessage(), fhResponse.getError());
-                    v.setEnabled(true);
-                    responseTextView.setText(fhResponse.getErrorMessage());
+                    button.setEnabled(true);
+                    response.setText(fhResponse.getErrorMessage());
                 }
             });
         } catch (Exception e) {
