@@ -15,21 +15,18 @@
  */
 package com.feedhenry.helloworld.test;
 
-
+import android.content.ContextWrapper;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.app.Fragment;
-import android.test.ActivityUnitTestCase;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
 
 import com.feedhenry.helloworld.HelloFragment;
 import com.feedhenry.helloworld.MainActivity;
 import com.feedhenry.helloworld_android.R;
-import com.squareup.okhttp.mockwebserver.MockWebServer;
+import com.feedhenry.sdk.FH;
+import com.feedhenry.sdk.FHActCallback;
+import com.feedhenry.sdk.FHResponse;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,51 +35,58 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
-public class MainActivityTest extends ActivityUnitTestCase<MainActivity> {
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import static org.junit.Assert.assertTrue;
 
+@RunWith(AndroidJUnit4.class)
+public class MainActivityTest {
 
-
-    private MockWebServer mockWebServer = null;
+    private CountDownLatch latch;
+    private ContextWrapper ctx;
     private long startTime;
-    public MainActivityTest() {
-        super(MainActivity.class);
-    }
 
+    @Rule
+    public ActivityTestRule<MainActivity> mActivityRule =
+            new ActivityTestRule<>(MainActivity.class, false, false);
+
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
-        mockWebServer = new MockWebServer();
-        mockWebServer.start(9000);
-        ContextThemeWrapper context = new AlternateAssetsContextWrapper(getInstrumentation().getTargetContext(), R.style.MyTheme_Base, getInstrumentation().getContext());
-        setActivityContext(context);
+        latch = new CountDownLatch(1);
+        ctx = new AlternateAssetsContextWrapper(
+                getInstrumentation().getTargetContext(),
+                R.style.MyTheme, getInstrumentation().getContext());
+
+        FH.init(ctx, new FHActCallback() {
+            @Override
+            public void success(FHResponse pResponse) {
+                latch.countDown();
+            }
+
+            @Override
+            public void fail(FHResponse pResponse) {
+                latch.countDown();
+            }
+        });
+        latch.await(5, TimeUnit.SECONDS);
+
         startTime = System.currentTimeMillis();
     }
 
-
+    @Test
     public void testActivityCallsFHInitOnStartup() throws IOException {
-        getInstrumentation().runOnMainSync(new Runnable() {
-            @Override
-            public void run() {
-                MainActivity activity = startActivity(new Intent(), Bundle.EMPTY, null);
-                activity.onStart();
-            }
-        });
 
-
-        MainActivity main = getActivity();
-
+        MainActivity activity = mActivityRule.launchActivity(new Intent(ctx, MainActivity.class));
 
         Fragment f;
-        while (!((f = main.getSupportFragmentManager().findFragmentById(R.id.content)) instanceof HelloFragment)) {
+        while (!((f = activity.getSupportFragmentManager()
+                .findFragmentById(R.id.content)) instanceof HelloFragment)) {
             assertTrue("Timeout after 10 seconds", System.currentTimeMillis() - startTime < 10000);
         }
 
         Assert.assertEquals(HelloFragment.class, f.getClass());
-
-        main.finish();
-
     }
 
 }
