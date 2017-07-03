@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.feedhenry.helloworld_android.R;
 import com.feedhenry.sdk.FH;
@@ -47,6 +48,11 @@ public class InitFragment extends Fragment {
             public void fail(FHResponse fhResponse) {
                 Log.d(TAG, "init - fail");
                 Log.e(TAG, fhResponse.getErrorMessage(), fhResponse.getError());
+
+                MainActivity activity = (MainActivity) getActivity();
+
+                Toast.makeText(activity, fhResponse.getErrorMessage(), Toast.LENGTH_LONG).show();
+                activity.finish();
             }
         });
 
