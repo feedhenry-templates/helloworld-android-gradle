@@ -1,12 +1,12 @@
 /**
  * Copyright 2015 Red Hat, Inc., and individual contributors
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,6 +30,7 @@ import com.feedhenry.sdk.FH;
 import com.feedhenry.sdk.FHActCallback;
 import com.feedhenry.sdk.FHResponse;
 import com.feedhenry.sdk.api.FHCloudRequest;
+import com.feedhenry.sdk.exceptions.FHNotReadyException;
 
 import org.json.fh.JSONObject;
 
@@ -78,8 +79,10 @@ public class HelloFragment extends Fragment {
                     response.setText(fhResponse.getErrorMessage());
                 }
             });
-        } catch (Exception e) {
+        } catch (FHNotReadyException e) {
             Log.e(TAG, e.getMessage(), e.getCause());
+            button.setEnabled(true);
+            response.setText(e.getMessage());
         }
     }
 
