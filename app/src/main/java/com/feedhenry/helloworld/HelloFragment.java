@@ -24,14 +24,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.feedhenry.helloworld_android.R;
 import com.feedhenry.sdk.FH;
 import com.feedhenry.sdk.FHActCallback;
 import com.feedhenry.sdk.FHResponse;
 import com.feedhenry.sdk.api.FHCloudRequest;
 import com.feedhenry.sdk.exceptions.FHNotReadyException;
-
 import org.json.fh.JSONObject;
 
 public class HelloFragment extends Fragment {
@@ -60,7 +58,8 @@ public class HelloFragment extends Fragment {
 
     private void cloudCall(final View button, final String name, final TextView response) {
         try {
-            JSONObject params = new JSONObject("{hello: '" + name + "'}");
+            JSONObject params = new JSONObject();
+            params.put("hello", name);  // { 'hello': $name }
 
             FHCloudRequest request = FH.buildCloudRequest("hello", "POST", null, params);
             request.executeAsync(new FHActCallback() {
