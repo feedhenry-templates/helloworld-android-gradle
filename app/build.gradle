@@ -2,22 +2,17 @@ plugins {
     id "com.github.hierynomus.license" version "0.12.0"
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'jacoco'
+apply plugin: "com.android.application"
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
-        applicationId "com.feedhenry.helloworld"
-        testApplicationId "com.feedhenry.helloworld.test"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
     }
 
     compileOptions {
@@ -25,15 +20,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildTypes {
-        debug {
-            testCoverageEnabled = false
-        }
-    }
-
     packagingOptions {
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
+        exclude "META-INF/NOTICE"
+        exclude "META-INF/LICENSE"
     }
 
     lintOptions {
@@ -43,23 +32,16 @@ android {
 }
 
 license {
-    header rootProject.file('misc/HEADER')
+    header rootProject.file("misc/HEADER")
     strictCheck true
 }
 
-configurations.all {
-    resolutionStrategy {
-        force 'com.android.support:support-annotations:26.0.0'
-    }
+ext {
+    android_support_library = "26.1.0"
 }
 
 dependencies {
-    compile 'com.feedhenry:fh-android-sdk:3.3.3'
-    compile 'com.android.support:appcompat-v7:26.0.0'
-    compile 'com.android.support:design:26.0.0'
-
-    androidTestCompile 'com.android.support:support-annotations:26.0.0'
-    androidTestCompile 'com.android.support.test:runner:1.0.0'
-    androidTestCompile 'com.android.support.test:rules:1.0.0'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    implementation "com.feedhenry:fh-android-sdk:4.0.0"
+    implementation "com.android.support:appcompat-v7:$android_support_library"
+    implementation "com.android.support:design:$android_support_library"
 }

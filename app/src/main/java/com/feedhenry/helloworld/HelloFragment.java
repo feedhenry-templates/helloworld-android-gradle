@@ -15,22 +15,17 @@
  */
 package com.feedhenry.helloworld;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import com.feedhenry.helloworld_android.R;
-import com.feedhenry.sdk.FH;
-import com.feedhenry.sdk.FHActCallback;
-import com.feedhenry.sdk.FHResponse;
-import com.feedhenry.sdk.api.FHCloudRequest;
-import com.feedhenry.sdk.exceptions.FHNotReadyException;
-import org.json.fh.JSONObject;
+import android.os.*;
+import android.support.v4.app.*;
+import android.util.*;
+import android.view.*;
+import android.widget.*;
+
+import com.feedhenry.sdk.*;
+import com.feedhenry.sdk.api.*;
+import com.feedhenry.sdk.exceptions.*;
+
+import org.json.fh.*;
 
 public class HelloFragment extends Fragment {
 
