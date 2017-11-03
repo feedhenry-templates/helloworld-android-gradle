@@ -62,7 +62,7 @@ public class HelloFragment extends Fragment {
                 public void success(FHResponse fhResponse) {
                     Log.d(TAG, "cloudCall - success");
                     button.setEnabled(true);
-                    response.setText(fhResponse.getJson().getString("text"));
+                    response.setText(fhResponse.getJson().getString("msg"));
                 }
 
                 @Override
