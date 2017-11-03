@@ -15,13 +15,12 @@
  */
 package com.feedhenry.helloworld;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.*;
+import android.support.v4.app.*;
+import android.support.v7.app.*;
+import android.support.v7.widget.*;
 
-import com.feedhenry.helloworld_android.R;
-import com.feedhenry.sdk.FH;
+import com.feedhenry.sdk.*;
 
 public class MainActivity extends AppCompatActivity {
 
