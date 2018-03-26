@@ -1,0 +1,41 @@
+<?xml version='1.0'?>
+<licenseSummary>
+    <project>helloworld-android-gradle</project>
+    <version>1.0</version>
+    <license>Apache-2.0</license>
+    <dependencies>
+        <dependency>
+            <groupId>com.feedhenry</groupId>
+            <artifactId>fh-android-sdk</artifactId>
+            <version>4.0.0</version>
+            <licenses>
+                <license>
+                    <name>Apache License 2.0</name>
+                    <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+                </license>
+            </licenses>
+        </dependency>
+        <dependency>
+            <groupId>com.android.support</groupId>
+            <artifactId>appcompat-v7</artifactId>
+            <version>26.1.0</version>
+            <licenses>
+                <license>
+                    <name>Apache License 2.0</name>
+                    <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+                </license>
+            </licenses>
+        </dependency>
+        <dependency>
+            <groupId>com.android.support</groupId>
+            <artifactId>design</artifactId>
+            <version>26.1.0</version>
+            <licenses>
+                <license>
+                    <name>Apache License 2.0</name>
+                    <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+                </license>
+            </licenses>
+        </dependency>
+    </dependencies>
+</licenseSummary>
