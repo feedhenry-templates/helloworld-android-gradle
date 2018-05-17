@@ -7,7 +7,9 @@ node("android"){
   }
 
   stage ("Prepare"){
-    writeFile file: 'app/src/main/assets/fhconfig.properties', text: params.FH_CONFIG_CONTENT
+    if(params.FH_CONFIG_CONTENT) {
+        writeFile file: 'app/src/main/assets/fhconfig.properties', text: params.FH_CONFIG_CONTENT
+    }
   }
 
   stage("Build"){
@@ -19,11 +21,13 @@ node("android"){
     }
   }
 
+  def keyStoreId = params.BUILD_CREDENTIAL_ID
+  def keyAlias = params.BUILD_CREDENTIAL_ALIAS ?: ''
   stage("Sign"){
     if (params.BUILD_CONFIG == 'release') {
         signAndroidApks (
-            keyStoreId: "${params.BUILD_CREDENTIAL_ID}",
-            keyAlias: "${params.BUILD_CREDENTIAL_ALIAS}",
+            keyStoreId: keyStoreId,
+            keyAlias: keyAlias,
             apksToSign: "**/*-unsigned.apk",
             // uncomment the following line to output the signed APK to a separate directory as described above
             // signedApkMapping: [ $class: UnsignedApkBuilderDirMapping ],
